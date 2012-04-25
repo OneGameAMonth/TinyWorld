@@ -4,7 +4,7 @@ The Earth is not big enough for everyone. Population growth combined with resour
 
 Windows executable may be found [here](http://dl.dropbox.com/u/56192083/EarthIsDying.zip).
 
-## How to play:
+## How to play
 As soon as you pop into the game, Earth is quickly becoming a wasteland. 
 
 **A/D/Left/Right:** Move left/right along the solar system.  
@@ -12,10 +12,10 @@ As soon as you pop into the game, Earth is quickly becoming a wasteland.
 **S:** Launch a seed ship with resources from Earth  
 **(debug) P:** Restart game, so you don't have to close/reopen
 
-## The Point:
+## The Point
 Save as many people from Earth as possible, the game ends when Earth dies. Your score is the number (in Millions) of people who are not on Earth at that time. People in ships don't count (to prevent cheating by launching to nowhere at the last moment). Have it planned. The game is meant to be played in about 2-3 minute attempts. 
 
-## What isn't included:
+## What isn't included
 Sound 
 Music 
 High score keeping 
@@ -23,7 +23,7 @@ Help instructions
 Aesthetics (proper graphics, backgrounds) 
 Better UI 
 
-## Tips:
+## Tips
 * Ships take time to reach their destinations, and also cost resources
 * With Earths resources already dwindling, you must balance out population growth on multiple planets to save as many people as possible
 * If a planet hits 0 resources, all colonists die. Do not allow this!
