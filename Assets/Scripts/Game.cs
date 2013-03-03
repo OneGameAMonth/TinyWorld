@@ -70,14 +70,14 @@ public class Game : MonoBehaviour
     public int Score = 0;
     public int StartPlanet = 2;
     public int CurrentPlanet = 2;
-    public float SecondsPerTick = 1f;
+    public float SecondsPerTick = 2f;
 
-    public static float ResourceCostPerMillion = 0.05f; // how many resources do 1M ppl need per tick
+    public static float ResourceCostPerMillion = 0.04f; // how many resources do 1M ppl need per tick
     public static float CostPerColonyShip = 3500f; // cost of resources for a terraforming ship
     public static float PopMovedPerColonyShip = 500f; // people moved (in M) with each colony ship
     public static float CostPerSeedShip = 7500f; // cost of resources for a seed ship
     public static float ResMovedPerSeedShip = 500f; // how many resources moved per seed ship
-    public static float PopulationGrowthFactor = 1.004f; // growth of pop per tick
+    public static float PopulationGrowthFactor = 1.008f; // growth of pop per tick
 
     // Use this for initialization
     void Start()
@@ -117,7 +117,7 @@ public class Game : MonoBehaviour
         planets = new List<Planet>();
         planets.Add(new Planet { Name = "Mercury", Population = 0, Resources = 2000 });
         planets.Add(new Planet { Name = "Venus", Population = 0, Resources = 4000 });
-        planets.Add(new Planet { Name = "Earth", Population = 22000, Resources = 250000 });
+        planets.Add(new Planet { Name = "Earth", Population = 22000, Resources = 400000 });
         planets.Add(new Planet { Name = "Mars", Population = 0, Resources = 3000 });
         planets.Add(new Planet { Name = "Jupiter", Population = 0, Resources = 0 });
         planets.Add(new Planet { Name = "Saturn", Population = 0, Resources = 0 });
@@ -132,12 +132,31 @@ public class Game : MonoBehaviour
         earth = planets[2];
     }
 
+    AudioSource AddAudio(GameObject obj, AudioClip clip, bool loop, bool playAwake, float vol)
+    {
+        var newAudio = obj.AddComponent<AudioSource>();
+        newAudio.clip = clip;
+        newAudio.loop = loop;
+        newAudio.playOnAwake = playAwake;
+        newAudio.volume = vol;
+        return newAudio;
+    }
+
     // Update is called once per frame
     void Update()
     {
         UpdateKeyboard();
         UpdateScore();
         UpdateGUI();
+
+        if (GameOver)
+            return;
+
+        if (earth.Resources < 100000f && !audio.isPlaying)
+        {
+            audio.loop = true;
+            audio.Play();
+        }
 
         if (earth.Population <= 0.0001f)
             EndGame();
@@ -151,6 +170,9 @@ public class Game : MonoBehaviour
 
     void EndGame()
     {
+        audio.Stop();
+        Destroy(Instantiate(Resources.Load("Prefabs/Game Over Audio")), 10f);
+
         GameOver = true;
         CancelInvoke();
     }
@@ -263,6 +285,10 @@ public class Game : MonoBehaviour
             {
                 planets[r.DestinationPlanet].Population += r.Population;
                 planets[r.DestinationPlanet].Resources += r.Resources;
+
+                var audioObj = Instantiate(Resources.Load("Prefabs/Rocket Landing Audio"));
+                Destroy(audioObj, 2f);
+
                 Destroy(r.gameObject);
                 toRemove.Add(r);
             }
@@ -310,8 +336,8 @@ public class Game : MonoBehaviour
         var plResTrend = GameObject.Find("TextResTrend");
 
         plName.guiText.text = current.Name;
-        plPop.guiText.text = string.Format("Pop: {0:#,##0} M", current.Population);
-        plRes.guiText.text = string.Format("Resources: {0:#,##0}", current.Resources);
+        plPop.guiText.text = string.Format("Pop: {0:#,##0} M", (int)current.Population);
+        plRes.guiText.text = string.Format("Resources: {0:#,##0}", (int)current.Resources);
 
         if (CurrentPlanet != 2) // earth cannot be terraformed
             plTerra.guiText.text = string.Format("Terraformed: {0:##0}%", current.TerraformPercent);
