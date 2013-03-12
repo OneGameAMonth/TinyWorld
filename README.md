@@ -16,8 +16,6 @@ As soon as you pop into the game, Earth is quickly becoming a wasteland.
 Save as many people from Earth as possible, the game ends when Earth dies. Your score is the number (in Millions) of people who are not on Earth at that time. People in ships don't count (to prevent cheating by launching to nowhere at the last moment). Have it planned. The game is meant to be played in about 2-3 minute attempts. 
 
 ## What Isn't Included
-* Sound
-* Music
 * High score keeping
 * Help instructions 
 * Aesthetics (proper graphics, backgrounds)
