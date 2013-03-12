@@ -2,7 +2,7 @@
 
 The Earth is not big enough for everyone. Population growth combined with resource decline will drain what we have very shortly, we must expand! You must send as many refuges away from Earth as you can, before the planet is dead and humankind with it. Oh, and you have, like, 3 minutes.
 
-Windows executable may be found [here](http://dl.dropbox.com/u/56192083/EarthIsDying.zip).
+You may play the game [here](http://dl.dropbox.com/u/56192083/TinyWorld/EarthIsDying.html).
 
 ## How To Play
 As soon as you pop into the game, Earth is quickly becoming a wasteland. 
